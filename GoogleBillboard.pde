@@ -6,14 +6,14 @@ public void setup()
   int end = 12;
   String tenDigits = e.substring(start, end);
   double num = Double.parseDouble(tenDigits);
-  //System.out.println(isPrime(num));
   while(isPrime(num) == false){
     start++;
     end++;
     tenDigits = e.substring(start, end);
     num = Double.parseDouble(tenDigits);
   }
-  System.out.println(tenDigits);
+  System.out.println(tenDigits); //first 10 consecutive digits that form a prime number
+  System.out.println(tenConsecSum49(5)); //fifth set of 10 consecutive digits that sum up to 49
 }  
 public boolean isPrime(double dNum)  
 {   
@@ -27,3 +27,26 @@ public boolean isPrime(double dNum)
   }
   return true;
 } 
+public String tenConsecSum49(int x){
+  int start = 2;
+  int end = 12;
+  String result = "";
+  int found = 0;
+  while(found < x){
+    if(getDigitsSum(e.substring(start, end)) == 49){
+      result = e.substring(start, end);
+      found++;
+    } 
+    start++;
+    end++;
+  }
+  return result;
+}
+
+public int getDigitsSum(String digits){
+  int sum = 0;
+  for(int i = 0; i < 10; i++){
+    sum += Integer.parseInt(digits.substring(i, i+1));
+  }
+  return sum;
+}
